@@ -11,7 +11,7 @@
       "tableSchema": "https://ons-opendata.github.io/ref_common/codelist-schema.json"
     },
     {
-      "url": "out/alcoholprofilescounty.csv",
+      "url": "out/observations.csv",
       "tableSchema": {
         "columns": [
           {
