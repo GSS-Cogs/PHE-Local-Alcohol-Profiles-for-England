@@ -20,8 +20,7 @@ pipeline {
                 }
             }
             steps {
-                sh "jupyter-nbconvert --output-dir=out --ExecutePreprocessor.timeout=None --execute 'LocalAlcoholProfilesforEngland county.ipynb'"
-                sh "jupyter-nbconvert --output-dir=out --ExecutePreprocessor.timeout=None --execute 'LocalAlcoholProfilesforEngland district.ipynb'"
+                sh "jupyter-nbconvert --output-dir=out --ExecutePreprocessor.timeout=None --execute 'main.ipynb'"
             }
         }
         stage('Test') {
@@ -34,7 +33,6 @@ pipeline {
             steps {
                 script {
                     ansiColor('xterm') {
-                        error "Needs review"
                         sh "csvlint -s schema.json"
                     }
                 }
@@ -44,7 +42,7 @@ pipeline {
             steps {
                 script {
                     jobDraft.replace()
-                    uploadTidy(['out/alcoholprofilescounty.csv', 'out/alcoholprofilesdistrict.csv'],
+                    uploadTidy(['out/observations.csv'],
                                'https://github.com/ONS-OpenData/ref_alcohol/raw/master/columns.csv')
                 }
             }
