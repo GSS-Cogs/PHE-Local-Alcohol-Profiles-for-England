@@ -1,0 +1,88 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "tables": [
+    {
+      "url": "https://ons-opendata.github.io/ref_alcohol/codelists/indicator.csv",
+      "tableSchema": "https://ons-opendata.github.io/ref_common/codelist-schema.json"
+    },
+    {
+      "url": "out/alcoholprofilescounty.csv",
+      "tableSchema": {
+        "columns": [
+          {
+            "titles": "Geography",
+            "required": true,
+            "name": "geography"
+          },
+          {
+            "titles": "Period",
+            "required": true,
+            "name": "period"
+          },
+          {
+            "titles": "Sex",
+            "required": true,
+            "name": "sex"
+          },
+          {
+            "titles": "Age",
+            "required": true,
+            "name": "age"
+          },
+          {
+            "titles": "Indicator",
+            "required": true,
+            "name": "indicator"
+          },
+          {
+            "titles": "Value",
+            "required": true,
+            "name": "value"
+          },
+          {
+            "titles": "Measure Type",
+            "required": true,
+            "name": "measure_type"
+          },
+          {
+            "titles": "Unit",
+            "required": false,
+            "name": "unit"
+          },
+          {
+            "titles": "CI Lower",
+            "required": false,
+            "name": "ci_lower"
+          },
+          {
+            "titles": "CI Upper",
+            "required": false,
+            "name": "ci_upper"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "columnReference": "indicator",
+            "reference": {
+              "resource": "https://ons-opendata.github.io/ref_alcohol/codelists/indicator.csv",
+              "columnReference": "notation"
+            }
+          }
+        ],
+        "primaryKey": [
+          "geography",
+          "period",
+          "sex",
+          "age",
+          "indicator",
+          "measure_type"
+        ]
+      }
+    }
+  ]
+}
