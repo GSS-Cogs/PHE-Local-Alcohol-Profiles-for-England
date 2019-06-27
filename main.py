@@ -23,8 +23,7 @@ scraper
 scraper.select_dataset(latest=True)
 scraper
 
-dist = scraper.distribution(title='Local Alcohol Profiles for England')
-dist
+scraper.distribution()
 
 # +
 dist.downloadURL = 'https://fingertipsws.phe.org.uk/api/all_data/csv/' + \
@@ -152,10 +151,15 @@ out = Path('out')
 out.mkdir(exist_ok=True, parents=True)
 table.drop_duplicates().to_csv(out / 'observations.csv', index = False)
 
+# +
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
 with open(out / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
+
+schema = CSVWMetadata('https://ons-opendata.github.io/ref_alcohol/')
+schema.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+# -
 
 table
 
