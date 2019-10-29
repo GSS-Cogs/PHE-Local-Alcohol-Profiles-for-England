@@ -5,7 +5,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.4'
-#       jupytext_version: 1.1.1
+#       jupytext_version: 1.2.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -23,7 +23,7 @@ scraper
 scraper.select_dataset(latest=True)
 scraper
 
-scraper.distribution()
+dist = scraper.distributions[0]
 
 # +
 dist.downloadURL = 'https://fingertipsws.phe.org.uk/api/all_data/csv/' + \
@@ -157,7 +157,7 @@ scraper.dataset.theme = THEME['health-social-care']
 with open(out / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
-schema = CSVWMetadata('https://ons-opendata.github.io/ref_alcohol/')
+schema = CSVWMetadata('https://gss-cogs.github.io/ref_alcohol/')
 schema.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
 
